@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOGO Offer</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 400px;
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .hedding {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        align-self: center;
+        justify-content: center;
+        gap: 2px;
+      }
+
+      .line {
+        height: 1px;
+        width: 100px;
+        background-color: #c8c8c8;
+      }
+
+      .header {
+        margin: 0;
+
+        color: #ff6b82;
+        font-size: 24px;
+      }
+
+      .offer-box {
+        margin-top: 20px;
+      }
+
+      .offer-item {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        padding: 15px;
+        min-height: 50px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .offer-item input {
+        margin-right: 10px;
+      }
+
+      .offer-item label {
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+      }
+
+      .unit-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      input[type="radio"] {
+        appearance: none; /* Remove default styling */
+        width: 15px;
+        height: 15px;
+        border: 2px solid #dadada;
+        border-radius: 50%;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+      }
+
+      input[type="radio"]:checked::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background-color: #ff6b82;
+
+        border-radius: 50%;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+      }
+
+      .discount {
+        background: #ff6b82;
+        color: #fff;
+        line-height: 14.52px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-top: 5px;
+        display: inline-block;
+      }
+
+      .price-value {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 180%;
+      }
+
+      .total-price {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+      }
+
+      .price {
+        font-size: 14.46px;
+        font-weight: 700;
+        line-height: 17.5px;
+      }
+
+      .original-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 10px;
+      }
+
+      .price-type {
+        color: #666;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.52px;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        margin-top: 10px;
+        margin-left: 40px;
+      }
+
+      .option {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .option label {
+        font-size: 14px;
+      }
+
+      select {
+        padding: 5px;
+        width: 69px;
+        font-size: 14px;
+
+        border-radius: 4px;
+      }
+
+      .badge {
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        background: #ff6b82;
+        color: #fff;
+        padding: 3px 8px;
+        font-size: 12px;
+        border-radius: 4px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        margin-top: 15px;
+      }
+
+      .free-delivery {
+        color: #ff6b82;
+        line-height: 16.94px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .total {
+        font-weight: bold;
+      }
+
+      .add-to-cart {
+        background: #ff6b82;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+
+      .powered-by {
+        text-align: right;
+        color: rgba(0, 0, 0, 0.4);
+        font-size: 12px;
+        margin-top: 10px;
+      }
+      @media (max-width: 426px) and (min-width: 376px) {
+        .header {
+          margin: 0;
+          color: #ff6b82;
+          text-align: center;
+          font-size: 18px;
+        }
+
+        .total-price {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          width: 38%;
+          justify-content: center;
+        }
+      }
+      @media (max-width: 376px) and (min-width: 320px) {
+        .header {
+          margin: 0;
+
+          text-align: center;
+          color: #ff6b82;
+
+          font-size: 18px;
+        }
+        .total-price {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          width: 58%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="hedding">
+        <div class="line"></div>
+        <h1 class="header">YAY! It’s BOGO</h1>
+        <div class="line"></div>
+      </div>
+
+      <div class="offer-box">
+        <!-- 1 Unit Offer -->
+        <div class="offer-item popular">
+          <div
+            style="
+              display: flex;
+              height: 50px;
+              align-items: center;
+              width: 100%;
+            "
+          >
+            <input type="radio" name="unit" id="unit1" />
+            <label for="unit1">
+              <div class="price-value">
+                <div>
+                  <span class="unit-title">1 Unit</span>
+                  <span class="discount">10% Off</span>
+                  <div class="price-type">Standard Price</div>
+                </div>
+
+                <div class="total-price">
+                  <span class="price">$10.00 USD</span>
+                  <span class="original-price">$24.00 USD</span>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div class="options">
+            <div class="option">
+              <table>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td><label>Size</label></td>
+                    <td><label>Colour</label></td>
+                  </tr>
+                  <tr>
+                    <td>#1</td>
+                    <td>
+                      <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#2</td>
+                    <td>
+                      <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Unit Offer -->
+        <div class="offer-item popular">
+          <div
+            style="
+              display: flex;
+              height: 50px;
+              align-items: center;
+              width: 100%;
+            "
+          >
+            <input type="radio" name="unit" id="unit2" />
+            <label for="unit2">
+              <div class="price-value">
+                <div>
+                  <span class="unit-title">2 Unit</span>
+                  <span class="discount">20% Off</span>
+                </div>
+
+                <div class="total-price">
+                  <span class="price">$18.00 USD</span>
+                  <span class="original-price">$24.00 USD</span>
+                </div>
+              </div>
+              <span class="badge">MOST POPULAR</span>
+            </label>
+          </div>
+
+          <div class="options">
+            <div class="option">
+              <table>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td><label>Size</label></td>
+                    <td><label>Colour</label></td>
+                  </tr>
+                  <tr>
+                    <td>#1</td>
+                    <td>
+                      <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#2</td>
+                    <td>
+                      <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Unit Offer -->
+        <div class="offer-item popular">
+          <div
+            style="
+              display: flex;
+              height: 50px;
+              align-items: center;
+              width: 100%;
+            "
+          >
+            <input type="radio" name="unit" id="unit3" />
+            <label for="unit3">
+              <div class="price-value">
+                <div>
+                  <span class="unit-title">3 Unit</span>
+                  <span class="discount">20% Off</span>
+                </div>
+
+                <div class="total-price">
+                  <span class="price">$18.00 USD</span>
+                  <span class="original-price">$24.00 USD</span>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div class="options">
+            <div class="option">
+              <table>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td><label>Size</label></td>
+                    <td><label>Colour</label></td>
+                  </tr>
+                  <tr>
+                    <td>#1</td>
+                    <td>
+                      <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#2</td>
+                    <td>
+                      <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span class="free-delivery">Free Delivery</span>
+          <span class="total">Total : <strong>$18.00 USD</strong></span>
+        </div>
+
+        <button class="add-to-cart">
+          <span style="padding: 5px">+</span>Add to Cart
+        </button>
+        <div class="powered-by"><i>@ Powered by Pumper</i></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const offerItems = document.querySelectorAll(".offer-item");
+        const radios = document.querySelectorAll("input[name='unit']");
+
+        // Initially hide all options
+        offerItems.forEach((item) => {
+          const options = item.querySelector(".options");
+          if (options) {
+            options.style.display = "none";
+          }
+          // Remove any existing border
+          item.style.border = "2px solid #333";
+          item.style.backgroundColor = "";
+        });
+
+        // Function to display the selected offer's options
+        function displayOptions() {
+          offerItems.forEach((item) => {
+            const radio = item.querySelector("input[type='radio']");
+            const options = item.querySelector(".options");
+
+            if (radio.checked) {
+              options.style.display = "flex";
+              item.style.border = "2px solid #FF6B82";
+              item.style.backgroundColor = "#FFF9FA";
+              radio.style.border = "2px solid #ff6b82";
+            } else {
+              options.style.display = "none";
+              item.style.border = "2px solid #333";
+              item.style.backgroundColor = "";
+              radio.style.border = "2px solid #DADADA";
+            }
+          });
+        }
+
+        // Add event listeners to the radio buttons
+        radios.forEach((radio) => {
+          radio.addEventListener("change", displayOptions);
+        });
+
+        // Call the function on load to set the initial state
+        displayOptions();
+      });
+    </script>
+  </body>
+</html>
